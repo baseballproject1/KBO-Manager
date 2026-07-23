@@ -532,3 +532,191 @@ update();
 showSeason();
 
 }
+// FA 선수 데이터
+
+let faPlayers = [
+
+{
+name:"양의지",
+grade:"S",
+position:"C",
+salary:80
+},
+
+{
+name:"박병호",
+grade:"A",
+position:"1B",
+salary:40
+},
+
+{
+name:"김현수",
+grade:"S",
+position:"LF",
+salary:70
+}
+
+];
+
+
+// FA 화면
+
+function showFA(){
+
+let html=`
+
+<h2>💼 FA 시장</h2>
+
+<p>영입할 선수를 선택하세요.</p>
+
+`;
+
+
+
+faPlayers.forEach((p,index)=>{
+
+
+html+=`
+
+<div class="card">
+
+<h3>${p.name}</h3>
+
+<p>${p.grade}</p>
+
+<p>${p.position}</p>
+
+<p>연봉 : ${p.salary}억</p>
+
+
+<button onclick="signFA(${index})">
+
+영입
+
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+html+=`
+
+<h3>📄 내 선수 재계약</h3>
+
+<button onclick="renewPlayer()">
+
+재계약 진행
+
+</button>
+
+`;
+
+
+document.getElementById("screen").innerHTML=html;
+
+}
+
+
+
+
+// FA 영입
+
+function signFA(index){
+
+
+let p=faPlayers[index];
+
+
+if(money < p.salary){
+
+alert("💰 자금 부족!");
+
+return;
+
+}
+
+
+money -= p.salary;
+
+
+
+players.push({
+
+name:p.name,
+
+grade:p.grade,
+
+position:p.position,
+
+enhance:0
+
+});
+
+
+
+alert(
+
+"🎉 FA 영입 성공!\n"+
+p.name
+
+);
+
+
+
+update();
+
+}
+
+
+
+// 재계약
+
+function renewPlayer(){
+
+
+if(players.length==0){
+
+alert("재계약할 선수가 없습니다.");
+
+return;
+
+}
+
+
+
+let player=players[0];
+
+
+let cost=20;
+
+
+
+if(money<cost){
+
+alert("💰 자금 부족!");
+
+return;
+
+}
+
+
+money-=cost;
+
+
+alert(
+
+"📄 "+
+player.name+
+" 재계약 완료!"
+
+);
+
+
+update();
+
+}
