@@ -1,17 +1,27 @@
 body{
 
 background:#071952;
+
 color:white;
+
 font-family:sans-serif;
+
 text-align:center;
 
+margin:0;
+
+padding:0;
+
 }
+
 
 
 .game{
 
 width:380px;
+
 max-width:95%;
+
 margin:20px auto;
 
 background:#0b2447;
@@ -23,6 +33,15 @@ border-radius:20px;
 box-shadow:0 0 15px black;
 
 }
+
+
+
+h1{
+
+margin-bottom:20px;
+
+}
+
 
 
 .status{
@@ -38,11 +57,17 @@ margin-bottom:15px;
 }
 
 
+
 .menu{
 
-margin-bottom:20px;
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
 
 }
+
 
 
 button{
@@ -63,7 +88,10 @@ cursor:pointer;
 
 background:white;
 
+color:black;
+
 }
+
 
 
 button:hover{
@@ -71,6 +99,7 @@ button:hover{
 transform:scale(1.05);
 
 }
+
 
 
 #screen{
@@ -81,10 +110,13 @@ padding:15px;
 
 border-radius:15px;
 
-min-height:200px;
+min-height:250px;
 
 }
 
+
+
+/* 선수 카드 */
 
 .card{
 
@@ -99,18 +131,16 @@ border-radius:15px;
 }
 
 
-.legend{
 
-border:3px solid gold;
-
-}
+/* 등급별 카드 */
 
 
-.s{
+.normal{
 
-border:3px solid purple;
+border:3px solid gray;
 
 }
+
 
 
 .a{
@@ -120,8 +150,42 @@ border:3px solid skyblue;
 }
 
 
-.normal{
 
-border:3px solid gray;
+.s{
+
+border:3px solid purple;
+
+}
+
+
+
+.legend{
+
+border:3px solid gold;
+
+box-shadow:0 0 10px gold;
+
+}
+
+
+
+/* 모바일 화면 */
+
+@media(max-width:500px){
+
+
+.game{
+
+width:90%;
+
+}
+
+
+button{
+
+width:90%;
+
+}
+
 
 }
