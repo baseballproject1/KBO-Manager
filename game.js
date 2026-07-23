@@ -1,4 +1,124 @@
-let money = 150;
+// 경기 화면
+
+function showGame(){
+
+document.getElementById("screen").innerHTML=`
+
+<h2>🏟️ 리그 경기</h2>
+
+<p>플레이 방식을 선택하세요.</p>
+
+
+<button onclick="playGame('자동')">
+⚡ 자동 진행
+</button>
+
+
+<button onclick="playGame('공격만')">
+🏏 공격만
+</button>
+
+
+<button onclick="playGame('수비만')">
+🧤 수비만
+</button>
+
+
+<button onclick="playGame('전체')">
+🔥 전체 플레이
+</button>
+
+`;
+
+}
+
+
+
+// 경기 진행
+
+function playGame(mode){
+
+
+let winChance=50;
+
+
+// 방식별 보너스
+
+if(mode=="공격만"){
+winChance+=5;
+}
+
+
+if(mode=="수비만"){
+winChance+=5;
+}
+
+
+if(mode=="전체"){
+winChance+=10;
+}
+
+
+
+// 승패 결정
+
+let win =
+Math.random()*100 < winChance;
+
+
+
+if(win){
+
+
+let reward=10;
+
+
+// 추가 보상
+
+if(mode=="공격만"){
+reward+=1;
+}
+
+if(mode=="수비만"){
+reward+=1;
+}
+
+if(mode=="전체"){
+reward+=3;
+}
+
+
+ticket+=reward;
+
+
+alert(
+"🏆 승리!\n\n"+
+"일반 뽑기권 "+
+reward+
+"장 획득!"
+);
+
+
+}
+
+else{
+
+
+ticket+=3;
+
+
+alert(
+"😢 패배\n\n"+
+"일반 뽑기권 3장 획득!"
+);
+
+
+}
+
+
+update();
+
+}let money = 150;
 let ticket = 30;
 
 
