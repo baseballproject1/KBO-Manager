@@ -412,3 +412,123 @@ alert("💾 저장 완료!");
 }
 
 
+// 시즌 데이터
+
+let seasonStage = 1;
+
+
+
+// 시즌 화면
+
+function showSeason(){
+
+document.getElementById("screen").innerHTML=`
+
+<h2>🏆 시즌 모드</h2>
+
+<p>
+현재 단계 :
+${seasonStage}/50
+</p>
+
+
+<p>
+AI 전력 :
+${seasonStage*10}
+</p>
+
+
+<button onclick="playSeason()">
+경기 시작
+</button>
+
+`;
+
+}
+
+
+
+// 시즌 경기
+
+function playSeason(){
+
+
+let aiPower = seasonStage * 2;
+
+
+let teamPower = players.length * 10;
+
+
+
+let winChance =
+50 + (teamPower - aiPower);
+
+
+
+if(winChance>90)
+winChance=90;
+
+
+if(winChance<10)
+winChance=10;
+
+
+
+let win =
+Math.random()*100 < winChance;
+
+
+
+if(win){
+
+
+let reward =
+seasonStage * 10;
+
+
+money += reward;
+
+
+alert(
+"🏆 시즌 승리!\n\n"+
+reward+
+"억 획득"
+);
+
+
+
+if(seasonStage<50){
+
+seasonStage++;
+
+}
+
+
+}
+
+else{
+
+
+let reward =
+seasonStage * 5;
+
+
+money += reward;
+
+
+alert(
+"😢 시즌 패배\n\n"+
+reward+
+"억 획득"
+);
+
+
+}
+
+
+
+update();
+
+showSeason();
+
+}
