@@ -1,6 +1,19 @@
+// =========================
+// KBO 매니저 game.js
+// 1/3
+// =========================
+
+
+// 기본 데이터
+
 let money = 150;
 let ticket = 30;
 
+let seasonStage = 1;
+
+
+
+// 보유 선수
 
 let players = [
 
@@ -19,6 +32,7 @@ enhance:3
 }
 
 ];
+
 
 
 // 뽑기 선수 목록
@@ -47,6 +61,7 @@ position:"SP"
 
 
 
+
 // 상태 업데이트
 
 function update(){
@@ -59,7 +74,10 @@ document.getElementById("ticket").innerHTML=ticket;
 
 
 
-// 선수단 화면
+// =========================
+// 선수단
+// =========================
+
 
 function showTeam(){
 
@@ -72,11 +90,17 @@ players.forEach((p,i)=>{
 let css="normal";
 
 
-if(p.grade=="A") css="a";
+if(p.grade=="A")
+css="a";
 
-if(p.grade=="S") css="s";
 
-if(p.grade=="레전드") css="legend";
+if(p.grade=="S")
+css="s";
+
+
+if(p.grade=="레전드")
+css="legend";
+
 
 
 html+=`
@@ -93,7 +117,9 @@ html+=`
 
 
 <button onclick="enhance(${i})">
+
 🔧 강화
+
 </button>
 
 
@@ -106,11 +132,15 @@ html+=`
 
 document.getElementById("screen").innerHTML=html;
 
+
 }
 
 
 
+// =========================
 // 일반 뽑기
+// =========================
+
 
 function draw(){
 
@@ -124,7 +154,9 @@ return;
 }
 
 
+
 ticket--;
+
 
 
 let r=Math.random()*100;
@@ -153,6 +185,7 @@ grade="S";
 
 
 
+
 let list=pool.filter(
 p=>p.grade==grade
 );
@@ -171,7 +204,7 @@ return;
 
 
 
-let player=
+let player =
 list[Math.floor(Math.random()*list.length)];
 
 
@@ -191,26 +224,34 @@ enhance:0
 
 
 alert(
+
 "🎴 카드 등장!\n\n"+
 player.grade+
 "\n"+
 player.name+
 " 획득!"
+
 );
 
 
+
 update();
+
 
 }
 
 
 
+// =========================
 // 강화 시스템
+// =========================
+
 
 function enhance(i){
 
 
 let p=players[i];
+
 
 
 if(p.enhance>=10){
@@ -223,24 +264,39 @@ return;
 
 
 
-let chance=[90,85,70,50,45,30,25,20,15,10];
+let chance=[
+
+90,
+85,
+70,
+50,
+45,
+30,
+25,
+20,
+15,
+10
+
+];
+
 
 
 let rate=chance[p.enhance];
 
 
-let result=Math.random()*100;
 
+if(Math.random()*100 < rate){
 
-
-if(result<rate){
 
 p.enhance++;
 
+
 alert(
+
 "🎉 강화 성공!\n"+
-"+"
-+p.enhance
+"현재 강화 +"+
+p.enhance
+
 );
 
 
@@ -256,35 +312,39 @@ p.enhance--;
 }
 
 
-alert("😢 강화 실패!");
+alert(
+
+"😢 강화 실패!"
+
+);
+
 
 }
+
 
 
 showTeam();
 
-}
 
-
+}// =========================
+// 경기 시스템
+// 2/3
+// =========================
 
 
 // 경기 화면
 
 function showGame(){
 
-
-document.getElementById("screen").innerHTML=
-
-`
+document.getElementById("screen").innerHTML=`
 
 <h2>🏟 리그 경기</h2>
 
-
-<p>플레이 방식 선택</p>
+<p>플레이 방식을 선택하세요.</p>
 
 
 <button onclick="playGame('자동')">
-⚡ 자동
+⚡ 자동 진행
 </button>
 
 
@@ -299,9 +359,8 @@ document.getElementById("screen").innerHTML=
 
 
 <button onclick="playGame('전체')">
-🔥 전체
+🔥 전체 플레이
 </button>
-
 
 `;
 
@@ -318,20 +377,32 @@ let chance=50;
 
 
 
-if(mode=="공격")
+if(mode=="공격"){
+
 chance+=5;
 
+}
 
-if(mode=="수비")
+
+if(mode=="수비"){
+
 chance+=5;
 
+}
 
-if(mode=="전체")
+
+if(mode=="전체"){
+
 chance+=10;
 
+}
 
 
-let win=Math.random()*100 < chance;
+
+// 승패 결정
+
+let win =
+Math.random()*100 < chance;
 
 
 
@@ -342,24 +413,35 @@ let reward=10;
 
 
 
-if(mode=="공격"||mode=="수비")
+if(mode=="공격" || mode=="수비"){
+
 reward+=1;
 
+}
 
-if(mode=="전체")
+
+
+if(mode=="전체"){
+
 reward+=3;
+
+}
 
 
 
 ticket+=reward;
 
 
+
 alert(
-"🏆 승리!\n\n"+
+
+"🏆 경기 승리!\n\n"+
 "일반 뽑기권 "+
 reward+
-"장 획득"
+"장 획득!"
+
 );
+
 
 
 }
@@ -370,76 +452,63 @@ else{
 ticket+=3;
 
 
+
 alert(
-"😢 패배!\n\n"+
-"일반 뽑기권 3장 획득"
+
+"😢 경기 패배!\n\n"+
+"일반 뽑기권 3장 획득!"
+
 );
 
 
 }
+
 
 
 update();
 
-}
-
-
-
-// 저장
-
-function saveGame(){
-
-
-let save={
-
-money:money,
-
-ticket:ticket,
-
-players:players
-
-};
-
-
-localStorage.setItem(
-"KBO_Manager_Save",
-JSON.stringify(save)
-);
-
-
-alert("💾 저장 완료!");
 
 }
 
 
-// 시즌 데이터
-
-let seasonStage = 1;
 
 
+// =========================
+// 시즌 시스템
+// =========================
 
-// 시즌 화면
+
 
 function showSeason(){
 
-document.getElementById("screen").innerHTML=`
+
+document.getElementById("screen").innerHTML=
+
+`
 
 <h2>🏆 시즌 모드</h2>
 
+
 <p>
-현재 단계 :
+
+현재 단계:
 ${seasonStage}/50
+
 </p>
 
 
 <p>
-AI 전력 :
-${seasonStage*10}
+
+AI 전력:
+${seasonStage*2}
+
 </p>
 
 
 <button onclick="playSeason()">
-경기 시작
+
+시즌 경기
+
 </button>
 
 `;
@@ -448,20 +517,22 @@ ${seasonStage*10}
 
 
 
-// 시즌 경기
 
 function playSeason(){
 
 
-let aiPower = seasonStage * 2;
+let aiPower =
+seasonStage*2;
 
 
-let teamPower = players.length * 10;
+
+let myPower =
+players.length*10;
 
 
 
 let winChance =
-50 + (teamPower - aiPower);
+50+(myPower-aiPower);
 
 
 
@@ -479,20 +550,25 @@ Math.random()*100 < winChance;
 
 
 
+
 if(win){
 
 
 let reward =
-seasonStage * 10;
+seasonStage*10;
 
 
-money += reward;
+
+money+=reward;
+
 
 
 alert(
+
 "🏆 시즌 승리!\n\n"+
 reward+
-"억 획득"
+"억 획득!"
+
 );
 
 
@@ -510,16 +586,20 @@ else{
 
 
 let reward =
-seasonStage * 5;
+seasonStage*5;
 
 
-money += reward;
+
+money+=reward;
+
 
 
 alert(
+
 "😢 시즌 패배\n\n"+
 reward+
-"억 획득"
+"억 획득!"
+
 );
 
 
@@ -532,9 +612,56 @@ update();
 showSeason();
 
 }
-// FA 선수 데이터
 
-let faPlayers = [
+
+
+// =========================
+// 저장 시스템
+// =========================
+
+
+
+function saveGame(){
+
+
+let saveData={
+
+
+money:money,
+
+ticket:ticket,
+
+seasonStage:seasonStage,
+
+
+players:players
+
+
+};
+
+
+
+localStorage.setItem(
+
+"KBO_Manager_Save",
+
+JSON.stringify(saveData)
+
+);
+
+
+
+alert("💾 저장 완료!");
+
+}// =========================
+// FA 시스템
+// 3/3
+// =========================
+
+
+// FA 선수 목록
+
+let faPlayers=[
 
 {
 name:"양의지",
@@ -544,27 +671,31 @@ salary:80
 },
 
 {
-name:"박병호",
-grade:"A",
-position:"1B",
-salary:40
-},
-
-{
 name:"김현수",
 grade:"S",
 position:"LF",
 salary:70
+},
+
+{
+name:"박병호",
+grade:"A",
+position:"1B",
+salary:40
 }
 
 ];
+
 
 
 // FA 화면
 
 function showFA(){
 
-let html=`
+
+let html=
+
+`
 
 <h2>💼 FA 시장</h2>
 
@@ -581,13 +712,23 @@ html+=`
 
 <div class="card">
 
+
 <h3>${p.name}</h3>
 
-<p>${p.grade}</p>
 
-<p>${p.position}</p>
+<p>
+등급 : ${p.grade}
+</p>
 
-<p>연봉 : ${p.salary}억</p>
+
+<p>
+포지션 : ${p.position}
+</p>
+
+
+<p>
+연봉 : ${p.salary}억
+</p>
 
 
 <button onclick="signFA(${index})">
@@ -604,23 +745,26 @@ html+=`
 });
 
 
+
 html+=`
 
 <h3>📄 내 선수 재계약</h3>
 
+
 <button onclick="renewPlayer()">
 
-재계약 진행
+재계약
 
 </button>
 
 `;
 
 
+
 document.getElementById("screen").innerHTML=html;
 
-}
 
+}
 
 
 
@@ -629,29 +773,32 @@ document.getElementById("screen").innerHTML=html;
 function signFA(index){
 
 
-let p=faPlayers[index];
+let player=faPlayers[index];
 
 
-if(money < p.salary){
 
-alert("💰 자금 부족!");
+if(money < player.salary){
+
+
+alert("💰 자금이 부족합니다.");
 
 return;
 
 }
 
 
-money -= p.salary;
+
+money-=player.salary;
 
 
 
 players.push({
 
-name:p.name,
+name:player.name,
 
-grade:p.grade,
+grade:player.grade,
 
-position:p.position,
+position:player.position,
 
 enhance:0
 
@@ -661,8 +808,8 @@ enhance:0
 
 alert(
 
-"🎉 FA 영입 성공!\n"+
-p.name
+"🎉 FA 영입 성공!\n\n"+
+player.name
 
 );
 
@@ -670,7 +817,9 @@ p.name
 
 update();
 
+
 }
+
 
 
 
@@ -681,9 +830,11 @@ function renewPlayer(){
 
 if(players.length==0){
 
+
 alert("재계약할 선수가 없습니다.");
 
 return;
+
 
 }
 
@@ -698,14 +849,17 @@ let cost=20;
 
 if(money<cost){
 
-alert("💰 자금 부족!");
+
+alert("💰 자금 부족");
 
 return;
 
 }
 
 
+
 money-=cost;
+
 
 
 alert(
@@ -717,6 +871,18 @@ player.name+
 );
 
 
+
 update();
 
+
 }
+
+
+
+
+// =========================
+// 게임 시작 시 상태 표시
+// =========================
+
+
+update();
