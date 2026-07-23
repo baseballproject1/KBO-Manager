@@ -11,10 +11,16 @@ text-align:center;
 .game{
 
 width:380px;
-margin:auto;
+max-width:95%;
+margin:20px auto;
+
 background:#0b2447;
+
 padding:20px;
+
 border-radius:20px;
+
+box-shadow:0 0 15px black;
 
 }
 
@@ -22,8 +28,19 @@ border-radius:20px;
 .status{
 
 background:#19376d;
+
 padding:15px;
+
 border-radius:15px;
+
+margin-bottom:15px;
+
+}
+
+
+.menu{
+
+margin-bottom:20px;
 
 }
 
@@ -31,12 +48,40 @@ border-radius:15px;
 button{
 
 width:45%;
+
 padding:12px;
+
 margin:5px;
-border-radius:10px;
+
 border:none;
 
+border-radius:10px;
+
 font-size:16px;
+
+cursor:pointer;
+
+background:white;
+
+}
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+#screen{
+
+background:#16213e;
+
+padding:15px;
+
+border-radius:15px;
+
+min-height:200px;
 
 }
 
@@ -44,8 +89,39 @@ font-size:16px;
 .card{
 
 background:#19376d;
-padding:15px;
+
 margin:10px;
+
+padding:15px;
+
 border-radius:15px;
+
+}
+
+
+.legend{
+
+border:3px solid gold;
+
+}
+
+
+.s{
+
+border:3px solid purple;
+
+}
+
+
+.a{
+
+border:3px solid skyblue;
+
+}
+
+
+.normal{
+
+border:3px solid gray;
 
 }
