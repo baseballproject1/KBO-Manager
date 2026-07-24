@@ -1,0 +1,204 @@
+
+/* ======================
+   기본 디자인
+====================== */
+
+body{
+
+background:#111;
+color:white;
+font-family:sans-serif;
+text-align:center;
+
+}
+
+
+h1{
+
+font-size:40px;
+
+}
+
+
+
+button{
+
+padding:12px 20px;
+margin:5px;
+
+border:none;
+border-radius:10px;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+
+
+/* ======================
+   선수 카드
+====================== */
+
+
+.card{
+
+width:180px;
+height:240px;
+
+display:inline-block;
+
+margin:10px;
+
+border-radius:15px;
+
+padding:15px;
+
+color:#111;
+
+font-weight:bold;
+
+box-shadow:
+0 0 10px #000;
+
+transition:.3s;
+
+}
+
+
+
+.card:hover{
+
+transform:scale(1.05);
+
+}
+
+
+
+/* ======================
+   등급 색상
+====================== */
+
+
+/* 일반 */
+
+.card.normal{
+
+background:white;
+
+}
+
+
+
+/* A */
+
+.card.a{
+
+background:#3b82f6;
+
+color:white;
+
+}
+
+
+
+/* S */
+
+.card.s{
+
+background:#22c55e;
+
+color:white;
+
+}
+
+
+
+/* 골든글러브 */
+
+.card.gold{
+
+background:#facc15;
+
+color:black;
+
+}
+
+
+
+/* 시그니처 */
+
+.card.signature{
+
+background:#ef4444;
+
+color:white;
+
+}
+
+
+
+/* 레전드 */
+
+.card.legend{
+
+background:#8b5cf6;
+
+color:white;
+
+}
+
+
+
+/* ======================
+   카드 능력 표시
+====================== */
+
+
+.card h3{
+
+font-size:24px;
+
+margin:5px;
+
+}
+
+
+.card p{
+
+margin:8px;
+
+}
+
+
+
+
+/* 팀 정보 */
+
+#userInfo{
+
+margin:20px;
+
+padding:20px;
+
+border-radius:15px;
+
+background:#222;
+
+}
+
+
+
+/* 선수 영역 */
+
+#players{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
