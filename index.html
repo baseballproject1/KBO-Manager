@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<title>프로야구 카드게임</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<h1>⚾ 프로야구 카드게임</h1>
+
+
+<div id="teamSelect">
+<h2>팀 선택</h2>
+
+<select id="teamList">
+<option>SSG</option>
+<option>삼성</option>
+<option>두산</option>
+<option>KIA</option>
+<option>KT</option>
+<option>롯데</option>
+<option>LG</option>
+<option>한화</option>
+<option>키움</option>
+<option>NC</option>
+</select>
+
+<button onclick="selectTeam()">
+선택
+</button>
+
+</div>
+
+
+
+<div id="userInfo">
+
+<h2>내 팀</h2>
+
+<p id="myTeam">
+없음
+</p>
+
+<p>
+보유 자금 :
+<span id="money">
+100억
+</span>
+</p>
+
+
+</div>
+
+
+
+
+<div id="cardArea">
+
+<h2>선수 카드</h2>
+
+<div id="players">
+
+</div>
+
+
+</div>
+
+
+
+
+<div>
+
+<button onclick="openGacha()">
+선수 영입
+</button>
+
+
+<button onclick="makeLegend()">
+레전드 제작
+</button>
+
+
+<button onclick="changeTrait()">
+특성 변경
+</button>
+
+
+</div>
+
+
+
+<script src="data/players.js"></script>
+<script src="data/teams.js"></script>
+
+<script src="system/save.js"></script>
+<script src="system/traits.js"></script>
+<script src="system/legend.js"></script>
+<script src="system/gacha.js"></script>
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>
