@@ -7,7 +7,7 @@
 
 // 일반 뽑기권 사용
 
-function useNormalGachaTicket(){
+function usenormalGachaTicket(){
 
 
     if(inventory.normalGachaTicket <= 0){
@@ -50,7 +50,7 @@ function useNormalGachaTicket(){
 
 // 고급 뽑기권 사용
 
-function useHighGachaTicket(){
+function usehighGachaTicket(){
 
 
     if(inventory.highGachaTicket <= 0){
